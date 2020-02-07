@@ -1,0 +1,134 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    display: block;
+}
+
+nav{
+    background-color: #021566;
+    padding: 25px 0;  
+}
+
+.scrollColor{
+    transition: 2s;
+    background-color: #021566;
+}
+
+
+header{
+    background-image: url('/images/Cooperative.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position: top;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    display: block;
+    background-attachment: scroll!important;
+}
+
+footer{
+    margin-top: 100px;
+    height: 80px;
+    width: 100%;
+    display: block;
+    background-color: #021566;
+}
+
+
+div.jumbotron{
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+header .intro-text .intro-heading {
+    margin-bottom: 25px;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 50px;
+}
+
+header .intro-text .intro-paragraph {
+    margin-bottom: 25px;
+    font-size: 22px;
+    line-height: 22px;
+}
+
+header .intro-tagline{
+    font-size: 0.85em;
+}
+
+@media (min-width: 768px){
+nav{
+    background: transparent; 
+    padding: 25px 0;
+}
+
+div.jumbotron{
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+
+header .intro-text .intro-heading {
+    margin-bottom: 0;
+    font-size: 115px;
+    font-weight: 700;
+    line-height: 115px;
+}
+
+header .intro-text .intro-paragraph {
+    margin-bottom: 25px;
+    font-size: 40px;
+    line-height: 40px;
+}
+
+header .intro-tagline{
+    font-size: 0.9em;
+}
+
+footer{
+    height: 80px;
+}
+
+}
+
+.mtb50{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.bg-light-gray{
+    background-color: lightgray;
+}
+
+.imgcard{
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    border: none;
+}
+
+.card{
+    background-color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

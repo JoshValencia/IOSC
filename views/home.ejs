@@ -1,13 +1,56 @@
 <%-include('./partials/header.ejs')%>
+<header id="home">
 <div class="container">
-    <div class="jumbotron">
-     <div class="container">
-            <h1 class="display-4">Hello World</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    <div class="jumbotron jumbotron-fluid" style="background-color: transparent;">
+     <div class="container text-white intro-text">
+            <h1 class="font-weight-bold text-center intro-heading">Hello World</h1>
+            <p class="lead text-center intro-tagline">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
+            <p class="font-weight-bold text-center intro-paragraph"><em>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem."</em></p>
+            <div class="text-center">
+                <a class="btn btn-primary btn-lg center-block" href="#" style="background-color: #021566;border-color: #021566;">Learn more</a>
+            </div>
      </div>
     </div>
 </div>
+</header>
+<section id="about">
+    <div class="container">
+        <h2 class="font-weight-bold text-center">About Us</h2>
+        <p class="lead text-center intro-tagline"><em>Lorem ipsum dolor sit amet consectetur adipisicing elit.</em></p>
+        <img src="/images/About Us.jpg" class="img-thumbnail">
+        <p class="text-center intro-tagline font-weight-bold" style="font-size: 1.2em;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p class="text-center intro-tagline text-muted" style="font-size: 1.05em;">consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, <br>adipisicing elit. Nostrum iusto voluptatem blanditiis rem porro </p>
+    </div>
+<div class="container-fluid">
+    <div class="container">
+        <h2 class="font-weight-bold text-center mtb50">Connect With Us</h2>
+        <div class="card-group text-center">
+            <div class="card text-white">
+                <img src="/images/facebook.png" class="imgcard">
+              <div class="card-body">
+                <h5 class="card-title" style="color: #3C5A98;">Facebook</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+            <div class="card text-white">
+                <img src="/images/twitter.png" class="imgcard">
+              <div class="card-body">
+                <h5 class="card-title" style="color: #54ADEF;">Twitter</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+            <div class="card text-white">
+                <img src="/images/linkedin.png" class="imgcard">
+              <div class="card-body">
+                <h5 class="card-title" style="color: #007BB6;">LinkedIn</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+</section>
 <%-include('./partials/footer.ejs')%>
