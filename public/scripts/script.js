@@ -1,9 +1,9 @@
 $(document).ready(function(){
     $(window).scroll(function(){
         if($(window).scrollTop()>480){
-            $('nav').addClass('scrollColor');
+            $('#nav').addClass('scrollColor');
         }else{
-            $('nav').removeClass('scrollColor');
+            $('#nav').removeClass('scrollColor');
         }
     });
 

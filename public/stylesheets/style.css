@@ -36,7 +36,7 @@ footer{
 }
 
 
-div.jumbotron{
+div #jumbotron{
     padding-top: 100px;
     padding-bottom: 50px;
 }
@@ -64,7 +64,7 @@ nav{
     padding: 25px 0;
 }
 
-div.jumbotron{
+div #jumbotron{
     padding-top: 200px;
     padding-bottom: 200px;
 }
