@@ -1,0 +1,29 @@
+<%-include('./partials/r-header.ejs')%>
+
+    
+<div class="container">
+    <div class="jumbotron jumbotron-fluid" style="background-color: transparent; margin: 0;">
+     <div class="container intro-text">
+            <h1 class="font-weight-bold text-center intro-heading">Login Area</h1>
+            <p class="lead text-center intro-tagline text-danger">Enter the correct login credentials</p>
+     </div>
+    </div>
+    <form action="/login" method="POST">
+        <div class="form-group">
+            <label for="inlineFormInputGroup">Username:</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">@</div>
+              </div>
+              <input type="text" class="form-control" name="username" id="inlineFormInputGroup" placeholder="Username" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword6">Password</label>
+            <input type="password" id="inputPassword6" name="password" class="form-control">
+          </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+
+<%-include('./partials/r-footer.ejs')%>
