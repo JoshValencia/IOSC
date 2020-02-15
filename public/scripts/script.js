@@ -1,4 +1,11 @@
+var timeOut = $('#timeout')
+var btnArea = $('#buttons_area');
+var timeIn = $('#timein');
+var rbutton = $('.r-button');
+var buttons = document.querySelector('#buttons_area button');
+
 $(document).ready(function(){
+    rbutton.hide();
     $(window).scroll(function(){
         if($(window).scrollTop()>480){
             $('#nav').addClass('scrollColor');
@@ -6,6 +13,10 @@ $(document).ready(function(){
             $('#nav').removeClass('scrollColor');
         }
     });
+
+    
+
+
 
     // $("#nav").on('click', function(event) {
 
@@ -30,3 +41,14 @@ $(document).ready(function(){
     //   });
 
 });
+
+
+timeIn.click(function() {
+    timeIn.hide();
+    rbutton.show();
+});
+
+timeOut.click(function() {
+    rbutton.hide();
+    timeIn.show();
+})
