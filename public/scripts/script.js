@@ -2,10 +2,13 @@ var timeOut = $('#timeout')
 var btnArea = $('#buttons_area');
 var timeIn = $('#timein');
 var rbutton = $('.r-button');
+var report = $('#report')
+var addreport = $('#addreport')
 var buttons = document.querySelector('#buttons_area button');
 
 $(document).ready(function(){
     rbutton.hide();
+    report.hide();
     $(window).scroll(function(){
         if($(window).scrollTop()>480){
             $('#nav').addClass('scrollColor');
@@ -51,4 +54,8 @@ timeIn.click(function() {
 timeOut.click(function() {
     rbutton.hide();
     timeIn.show();
+})
+
+addreport.click(function(){
+    report.show();
 })
