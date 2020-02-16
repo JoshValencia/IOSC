@@ -5,10 +5,14 @@ var rbutton = $('.r-button');
 var report = $('#report')
 var addreport = $('#addreport')
 var buttons = document.querySelector('#buttons_area button');
+var adminModify = $('.admin-modify');
+var adminEdit = $('.admin-edit');
+var adminCancel = $('.admin-cancel')
 
 $(document).ready(function(){
     rbutton.hide();
     report.hide();
+    adminEdit.hide();
     $(window).scroll(function(){
         if($(window).scrollTop()>480){
             $('#nav').addClass('scrollColor');
@@ -54,8 +58,20 @@ timeIn.click(function() {
 timeOut.click(function() {
     rbutton.hide();
     timeIn.show();
+    report.hide();
 })
 
 addreport.click(function(){
     report.show();
+})
+
+adminModify.click(function(){
+    $(this).siblings().show();
+    $(this).hide();
+})
+
+adminCancel.click(function(){
+    $(this).hide();
+    $(this).siblings('.admin-edit').hide();
+    $(this).siblings('.admin-modify').show();
 })

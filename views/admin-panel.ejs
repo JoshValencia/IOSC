@@ -1,0 +1,136 @@
+<%-include('./partials/r-header.ejs')%>
+
+<div class="container">
+    <div class="jumbotron jumbotron-fluid" style="background-color: transparent; margin: 0;">
+     <div class="container intro-text">
+            <h1 class="font-weight-bold text-center intro-heading">Welcome ! <%=currentUser.firstname%></h1>
+     </div>
+     <div id="panel_area">
+        <div id="admin_manage">
+            <div class="table-responsive-lg">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Location/Outlet</th>
+                        <th scope="col">SKU</th>
+                        <th scope="col">Modify</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>SM Fairview</td>
+                        <td>
+                            <select class="form-control border border-dark">
+                                <option>0001</option>
+                                <option>0002</option>
+                                <option>0003</option>
+                                <option>0004</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger admin-modify btn-sm">Modify</button>
+                            <button class="admin-edit btn btn-primary btn-sm">Add SKU</button>
+                            <button class="admin-edit btn btn-dark btn-sm">Edit Outlet Name</button>
+                            <button class="admin-edit btn btn-dark btn-sm">Edit SKU</button>
+                            <button class="admin-edit btn btn-danger btn-sm">Remove SKU</button>
+                            <button class="admin-edit btn btn-danger btn-sm">Remove ALL</button>
+                            <button class="admin-edit admin-cancel btn btn-warning btn-sm">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Robinsons Novaliches</td>
+                        <td>
+                            <select class="form-control border border-dark">
+                                <option>0001</option>
+                                <option>0002</option>
+                                <option>0003</option>
+                                <option>0004</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger admin-modify btn-sm">Modify</button>
+                            <button class="admin-edit btn btn-primary btn-sm">Add SKU</button>
+                            <button class="admin-edit btn btn-dark btn-sm">Edit Outlet Name</button>
+                            <button class="admin-edit btn btn-dark btn-sm">Edit SKU</button>
+                            <button class="admin-edit btn btn-danger btn-sm">Remove SKU</button>
+                            <button class="admin-edit btn btn-danger btn-sm">Remove ALL</button>
+                            <button class="admin-edit admin-cancel btn btn-warning btn-sm">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>SM North</td>
+                        <td>
+                            <select class="form-control border border-dark">
+                                <option>0001</option>
+                                <option>0002</option>
+                                <option>0003</option>
+                                <option>0004</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger admin-modify btn-sm">Modify</button>
+                            <button class="admin-edit btn btn-primary btn-sm">Add SKU</button>
+                            <button class="admin-edit btn btn-dark btn-sm">Edit Outlet Name</button>
+                            <button class="admin-edit btn btn-dark btn-sm">Edit SKU</button>
+                            <button class="admin-edit btn btn-danger btn-sm">Remove SKU</button>
+                            <button class="admin-edit btn btn-danger btn-sm">Remove ALL</button>
+                            <button class="admin-edit admin-cancel btn btn-warning btn-sm">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Vertis North</td>
+                        <td>
+                            <select class="form-control border border-dark">
+                                <option>0001</option>
+                                <option>0002</option>
+                                <option>0003</option>
+                                <option>0004</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger admin-modify btn-sm">Modify</button>
+                            <button class="admin-edit btn btn-primary btn-sm">Add SKU</button>
+                            <button class="admin-edit btn btn-dark btn-sm">Edit Outlet Name</button>
+                            <button class="admin-edit btn btn-dark btn-sm">Edit SKU</button>
+                            <button class="admin-edit btn btn-danger btn-sm">Remove SKU</button>
+                            <button class="admin-edit btn btn-danger btn-sm">Remove ALL</button>
+                            <button class="admin-edit admin-cancel btn btn-warning btn-sm">Cancel</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <form>
+                <div class="form-group">
+                    <label for="location">Location/Outlet</label>
+                    <select name="location" class="form-control border border-dark" id="location">
+                        <option>Sample</option>
+                        <option>Sample</option>
+                        <option>Sample</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sku">SKU</label>
+                    <select name="sku" class="form-control border border-dark" id="sku">
+                        <option>00001</option>
+                        <option>00002</option>
+                        <option>00003</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sku">Add SKU</label>
+                    <input type="number" id="sku" class="form-control border border-primary">
+                </div>
+            </form> -->
+        </div>
+     </div>
+    </div>
+</div>
+
+
+<%-include('./partials/r-footer.ejs')%>

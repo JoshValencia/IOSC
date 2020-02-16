@@ -164,6 +164,9 @@ app.get('/employee/profile',(req,res)=>{
 	res.render('profile');
 })
 
+app.get('/admin/panel',(req,res)=>{
+	res.render('admin-panel');
+})
 
 
 
