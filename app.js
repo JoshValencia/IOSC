@@ -136,22 +136,22 @@ app.get("/register",function(req,res){
 });
 
 app.post("/register",upload,function(req,res){
-	var firstname = req.body.firstname;
-	var middlename = req.body.middlename;
-	var lastname =req.body.lastname;
-	var username = req.body.username;
-	var birthdate = req.body.birthdate;
-	var gender = req.body.gender;
-	var email = req.body.email;
-	var province = req.body.province;
-	var city = req.body.city;
-	var zipcode = req.body.zipcode;
-	var brgy = req.body.brgy;
-	var work = req.body.work;
-	var photo = req.file.filename;
-	var employee = {firstname:firstname,middlename:middlename,lastname:lastname,username:username,birthdate:birthdate,gender:gender,email:email,province:province,city:city,zipcode:zipcode,brgy:brgy,work:work,photo:photo}
 	cloudinary.uploader.upload(req.file.path, function(result) {
+		var firstname = req.body.firstname;
+		var middlename = req.body.middlename;
+		var lastname =req.body.lastname;
+		var username = req.body.username;
+		var birthdate = req.body.birthdate;
+		var gender = req.body.gender;
+		var email = req.body.email;
+		var province = req.body.province;
+		var city = req.body.city;
+		var zipcode = req.body.zipcode;
+		var brgy = req.body.brgy;
+		var work = req.body.work;
+		var photo = req.file.filename;
 		photo = result.secure_url;
+		var employee = {firstname:firstname,middlename:middlename,lastname:lastname,username:username,birthdate:birthdate,gender:gender,email:email,province:province,city:city,zipcode:zipcode,brgy:brgy,work:work,photo:photo}	
 		User.register(new User(employee),req.body.password, function(err,user){
 		if(err){
 			console.log(err);
