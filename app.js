@@ -1,5 +1,6 @@
 //		DECLARING VARIABLES AND REQUIRING PACKAGES & MODULES		
 //========================================================
+require('dotenv').config()
 const express 				= require('express'),
 	  path 					= require('path'),
 	  multer				= require('multer'),
@@ -16,7 +17,7 @@ const express 				= require('express'),
 
 //					APP CONFIGURATIONS
 //=============================================================
-mongoose.connect("mongodb://localhost:27017/IOSK",{
+mongoose.connect(process.env.MONGODB_URI||"localhost/IOSK",{
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	useFindAndModify: false
@@ -172,6 +173,7 @@ app.get('/admin/panel',(req,res)=>{
 
 
 // SERVER INITIALIZE
-app.listen(3000,()=>{
+const port = process.env.PORT || 3000;
+app.listen(port,()=>{
     console.log('Server has started at PORT 3000');
 });
