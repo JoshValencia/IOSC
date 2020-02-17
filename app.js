@@ -13,7 +13,9 @@ const express 				= require('express'),
 	  passportLocalMongoose = require('passport-local-mongoose'),
 	  methodOverride 		= require('method-override'),
 	  expressSanitizer 		= require('express-sanitizer'),
-	  fs					= require('fs')
+	  fs					= require('fs'),
+	  cloudinary            = require('cloudinary'),  
+	  cloudinaryStorage     = require('multer-storage-cloudinary');
 
 //					APP CONFIGURATIONS
 //=============================================================
@@ -46,8 +48,9 @@ app.use(function(req,res,next){
 
 //							STORAGE ENGINE FOR FILES
 //==========================================================================
-var Storage = multer.diskStorage({
-	destination:"public/uploads/",
+var Storage = cloudinaryStorage({
+	cloudinary: cloudinary,
+	folder:"public/uploads/",
 	filename:(req,file,cb)=>{
 		var d = new Date();
 		var year  = d.getFullYear();
