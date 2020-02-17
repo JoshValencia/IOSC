@@ -165,7 +165,7 @@ app.get('/employee/dashboard',(req,res)=>{
 })
 
 app.get('/employee/profile',(req,res)=>{
-	res.render('profile');
+	res.render('profile',{image_url: cloudinary.url});
 })
 
 app.get('/admin/panel',(req,res)=>{
