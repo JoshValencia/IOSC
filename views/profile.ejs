@@ -4,7 +4,7 @@
     <div class="jumbotron jumbotron-fluid" style="background-color: transparent; margin: 0;">
      <div class="container intro-text">
             <!-- <img src="/uploads/<%=currentUser.photo%>" width="300px" height="300px" alt="profile picture" class="img-thumbnail rounded mx-auto d-block"> -->
-            <%-image_url("public/uploads/"+currentUser.photo, {width: 300, height: 300, alt: "profile picture", class: "img-thumbnail rounded mx-auto d-block"})%>
+            <img src="<%=currentUser.photo%>" width="300px" height="300px" alt="profile picture" class="img-thumbnail rounded mx-auto d-block"> 
             <h1 class="font-weight-bold text-center intro-heading"><%=currentUser.firstname%> <%=currentUser.middlename[0]%>. <%=currentUser.lastname%></h1>
     </div>
     </div>

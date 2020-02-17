@@ -59,9 +59,7 @@ app.use(function(req,res,next){
 //							STORAGE ENGINE FOR FILES
 //==========================================================================
 //<<<<<< --------CLOUDINARY BUCKET CONNECTION FOR ONLINE DEPLOYMENT------>>>>>>>>>>>>>
-var Storage = cloudinaryStorage({
-	cloudinary: cloudinary,
-	folder:"public/uploads/",
+var Storage = multer.diskStorage({
 	filename:(req,file,cb)=>{
 		var d = new Date();
 		var year  = d.getFullYear();
@@ -152,7 +150,9 @@ app.post("/register",upload,function(req,res){
 	var work = req.body.work;
 	var photo = req.file.filename;
 	var employee = {firstname:firstname,middlename:middlename,lastname:lastname,username:username,birthdate:birthdate,gender:gender,email:email,province:province,city:city,zipcode:zipcode,brgy:brgy,work:work,photo:photo}
-	User.register(new User(employee),req.body.password, function(err,user){
+	cloudinary.uploader.upload(req.file.path, function(result) {
+		photo = result.secure_url;
+		User.register(new User(employee),req.body.password, function(err,user){
 		if(err){
 			console.log(err);
 			// req.flash("error", err.message);
@@ -165,6 +165,7 @@ app.post("/register",upload,function(req,res){
 			});
 		});
 	});
+});
 
 //Login Route | Login logic
 app.get('/login',(req,res)=>{
