@@ -19,11 +19,21 @@ const express 				= require('express'),
 
 //					APP CONFIGURATIONS
 //=============================================================
-mongoose.connect(process.env.MONGODB_URI||"localhost/IOSK",{
+//<<<<<< --------MONGODB ATLAS CONNECTION FOR ONLINE DEPLOYMENT------>>>>>>>>>>>>>
+mongoose.connect(process.env.MONGODB_URI||"localhost/IOSK",{ 
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	useFindAndModify: false
 });
+//<<<<<< --------MONGODB ATLAS CONNECTION FOR ONLINE DEPLOYMENT------>>>>>>>>>>>>>
+
+//<<<<<< --------MONGODB LOCAL CONNECTION FOR OFFLINE DEPLOYMENT------>>>>>>>>>>>>>
+// mongoose.connect("mongodb://localhost:27017/IOSK",{
+// 	useNewUrlParser: true,
+// 	useUnifiedTopology: true,
+// 	useFindAndModify: false
+// });
+//<<<<<< --------MONGODB lOCAL CONNECTION FOR OFFLINE DEPLOYMENT------>>>>>>>>>>>>>
 
 app.use(require('express-session')({
 	secret: "Secret because it's secret",
@@ -48,6 +58,7 @@ app.use(function(req,res,next){
 
 //							STORAGE ENGINE FOR FILES
 //==========================================================================
+//<<<<<< --------CLOUDINARY BUCKET CONNECTION FOR ONLINE DEPLOYMENT------>>>>>>>>>>>>>
 var Storage = cloudinaryStorage({
 	cloudinary: cloudinary,
 	folder:"public/uploads/",
@@ -60,6 +71,21 @@ var Storage = cloudinaryStorage({
 		cb(null,file.fieldname+"_"+date+path.extname(file.originalname));
 	}
 });
+//<<<<<< --------CLOUDINARY BUCKET CONNECTION FOR OFFLINE DEPLOYMENT------>>>>>>>>>>>>>
+
+//<<<<<< --------LOCAL BUCKET CONNECTION FOR ONLINE DEPLOYMENT------>>>>>>>>>>>>>
+// var Storage = multer.diskStorage({
+// 	destination:"public/uploads/",
+// 	filename:(req,file,cb)=>{
+// 		var d = new Date();
+// 		var year  = d.getFullYear();
+// 		var month = d.getMonth()+1;
+// 		var day = d.getDate();
+// 		var date = month + "_" + day + "_" + year;
+// 		cb(null,file.fieldname+"_"+date+path.extname(file.originalname));
+// 	}
+// });
+//<<<<<< --------LOCAL BUCKET CONNECTION FOR OFFLINE DEPLOYMENT------>>>>>>>>>>>>>
 
 var upload = multer({
 	storage:Storage
@@ -165,7 +191,11 @@ app.get('/employee/dashboard',(req,res)=>{
 })
 
 app.get('/employee/profile',(req,res)=>{
-	res.render('profile',{image_url: cloudinary.image});
+	//<<RENDERING FOR CLOUDINARY>>
+	res.render('profile',{image_url: cloudinary.url}); 
+	//<<RENDERING FOR CLOUDINARY>>
+
+	// res.render('profile');
 })
 
 app.get('/admin/panel',(req,res)=>{
@@ -176,7 +206,14 @@ app.get('/admin/panel',(req,res)=>{
 
 
 // SERVER INITIALIZE
+//--------<<server initialization with heroku variable>>--------
 const port = process.env.PORT || 3000;
 app.listen(port,()=>{
     console.log('Server has started at PORT 3000');
 });
+//--------<<server initialization with heroku variable>>--------
+
+// const port = 3000;
+// app.listen(port,()=>{
+//     console.log('Server has started at PORT 3000');
+// });
