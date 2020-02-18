@@ -193,7 +193,7 @@ app.get('/employee/dashboard',(req,res)=>{
 
 app.get('/employee/profile',(req,res)=>{
 	//<<RENDERING FOR CLOUDINARY>>
-	res.render('profile',{image_url: cloudinary.image}); 
+	res.render('profile'); 
 	//<<RENDERING FOR CLOUDINARY>>
 
 	// res.render('profile');
