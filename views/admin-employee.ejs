@@ -1,0 +1,104 @@
+<%-include('./partials/r-header.ejs')%>
+
+<div class="container">
+    <div class="jumbotron jumbotron-fluid" style="background-color: transparent; margin: 0;">
+     <div class="container intro-text">
+            <a href="/admin/panel" style="font-size: 20px; color: #212529; text-decoration: none;"><i class="fa fa-arrow-left" style=" color: black;"></i> GO BACK</a>
+            <img src="/uploads/<%=user.photo%>" width="300px" height="300px" alt="profile picture" class="img-thumbnail rounded mx-auto d-block">
+            <!-- <img src="<%=user.photo%>" width="300px" height="300px" alt="profile picture" class="img-thumbnail rounded mx-auto d-block">  -->
+            <h1 class="font-weight-bold text-center intro-heading"><%=user.firstname%> <%=user.middlename[0]%>. <%=user.lastname%></h1>
+    </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Attendance Record</th>
+            </tr>
+            </thead>
+            <tbody>
+                <% attendance.forEach(function(a){%>
+                    <tr>
+                        <td><%=a.created.toDateString()%></td>
+                        <td><button class="btn-image-attendance btn btn-dark" src="/uploads/attendance/<%=a.image%>">Attendance Selfie</button></td>
+                        <td><a class="btn btn-success" href="https://www.latlong.net/c/?lat=<%=a.lat%>&long=<%=a.lon%>" target="_blank">View Location</a></td>
+                    </tr>
+                <%})%>
+            </tbody>
+        </table>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Store</th>
+                <th scope="col">Report</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Sample</td>
+                <td>Sample</td>
+                <td>Sample</td>
+            </tr>
+            <tr>
+                <td>Sample</td>
+                <td>Sample</td>
+                <td>Sample</td>
+            </tr>
+            <tr>
+                <td>Sample</td>
+                <td>Sample</td>
+                <td>Sample</td>
+            </tr>
+            <tr>
+                <td>Sample</td>
+                <td>Sample</td>
+                <td>Sample</td>
+            </tr>
+            </tbody>
+        </table>
+         <!-- The Modal -->
+         <div id="myModal" class="modal">
+
+            <!-- The Close Button -->
+            <span class="close">&times</span>
+        
+            <!-- Modal Content (The Image) -->
+            <img class="modal-content" id="img01">
+        
+            <!-- Modal Caption (Image Text) -->
+            <div id="caption"></div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var imgBtn = $(".btn-image-attendance");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+imgBtn.click(function(){
+  modal.style.display = "block";
+  modalImg.src = $(this).attr('src');
+})
+
+// When the user clicks on <span> (x), close the modal
+$(".close").click(function() {
+  modal.style.display = "none";
+});
+
+
+
+</script>
+
+
+
+<%-include('./partials/r-footer.ejs')%>

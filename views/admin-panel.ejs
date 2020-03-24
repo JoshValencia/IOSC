@@ -3,134 +3,144 @@
 <div class="container">
     <div class="jumbotron jumbotron-fluid" style="background-color: transparent; margin: 0;">
      <div class="container intro-text">
-            <h1 class="font-weight-bold text-center intro-heading">Welcome ! <%=currentUser.firstname%></h1>
+            <h1 class="font-weight-bold text-center intro-heading">Welcome ! <%=currentUser.firstname%></h1><br>
+            <div>
+                <div class="input-group">
+                    <input type="text" id="admin-search" class="form-control search-focus" placeholder="Search Employee">
+                    <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    </div>
+                </div>
+                <div class="admin-search-viewbox">
+                    <ul class="search-focus">
+                        <li id="none-search">No Match for your search!</li>
+                        <div id="admin-result-search-box">
+                            
+                        </div>
+                    </ul>
+                </div>  
+            </div><br>
      </div>
      <div id="panel_area">
         <div id="admin_manage">
-            <div class="table-responsive-lg">
+            <div class="table-responsive-sm">
                 <table class="table">
-                    <thead class="thead-dark">
+                    <input type="text" class="form-control" placeholder="INPUT SKU" id="new-prod-sku">
+                    <input type="text" class="form-control" placeholder="INPUT PRODUCT NAME" id="new-prod-name">
+                    <div id="table-option-btn">
+                        <button class="btn btn-primary btn-md t-btn" type="button" id="product-add">ADD PRODUCT</button>
+                        <a class="btn btn-dark btn-md t-btn" type="button" href="/admin/products/view" target="_blank" style="text-decoration: none;color: white;">VIEW PRODUCTS</a>
+                        <button class="btn btn-success btn-md t-btn" type="button" id="t-add">ADD OUTLET <i class="fa fa-plus"></i></button>
+                        <button class="btn btn-danger btn-md t-btn" type="button" id="t-remove">REMOVE OUTLET <i class="fa fa-trash"></i></button>
+                        <button class="btn btn-warning btn-md t-btn" type="button" id="checkbox-cancel">Cancel</button>
+                        <button class="btn btn-danger btn-md t-btn" type="button" id="checkbox-confirm">Confirm</button>
+                    </div>
+                    <thead class="thead-dark" id="t-head">
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Location/Outlet</th>
                         <th scope="col">SKU</th>
                         <th scope="col">Modify</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="t-body">
+                    <%outlet.forEach(outlet => {%>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>SM Fairview</td>
-                        <td>
+                        <input type="hidden" class="outletID" value="<%=outlet._id%>">
+                        <td class="t-show show-location"><%=outlet.location%></td>
+                        <td class="input"><input type="text" placeholder="Location" class="form-control sku-location" value="<%=outlet.location%>"></td>
+                        <td class="t-show">
                             <select class="form-control border border-dark">
-                                <option>0001</option>
-                                <option>0002</option>
-                                <option>0003</option>
-                                <option>0004</option>
+                                <%outlet.sku.forEach(sk => {%>
+                                    <option><%=sk.number + '-' + sk.name%></option>
+                                <%})%>
                             </select>
+                        </td>
+                        <td class="input">
+                            <div class="new-sku-container">
+                                <%outlet.sku.forEach(sk => {%>
+                                    <input type="text" class="form-control show-sku" value="<%=sk.number%>" list="dataList">
+                                <%})%>
+                            </div>
+                            <button class="btn btn-success btn-sm sku-add" type="button">Add More</button>
+                            <button class="btn btn-danger btn-sm sku-remove" type="button">Remove</button>
                         </td>
                         <td>
                             <button class="btn btn-danger admin-modify btn-sm">Modify</button>
-                            <button class="admin-edit btn btn-primary btn-sm">Add SKU</button>
-                            <button class="admin-edit btn btn-dark btn-sm">Edit Outlet Name</button>
-                            <button class="admin-edit btn btn-dark btn-sm">Edit SKU</button>
-                            <button class="admin-edit btn btn-danger btn-sm">Remove SKU</button>
-                            <button class="admin-edit btn btn-danger btn-sm">Remove ALL</button>
+                            <button class="admin-edit btn btn-primary btn-sm sku-confirm">Confirm</button>
                             <button class="admin-edit admin-cancel btn btn-warning btn-sm">Cancel</button>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Robinsons Novaliches</td>
-                        <td>
-                            <select class="form-control border border-dark">
-                                <option>0001</option>
-                                <option>0002</option>
-                                <option>0003</option>
-                                <option>0004</option>
-                            </select>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger admin-modify btn-sm">Modify</button>
-                            <button class="admin-edit btn btn-primary btn-sm">Add SKU</button>
-                            <button class="admin-edit btn btn-dark btn-sm">Edit Outlet Name</button>
-                            <button class="admin-edit btn btn-dark btn-sm">Edit SKU</button>
-                            <button class="admin-edit btn btn-danger btn-sm">Remove SKU</button>
-                            <button class="admin-edit btn btn-danger btn-sm">Remove ALL</button>
-                            <button class="admin-edit admin-cancel btn btn-warning btn-sm">Cancel</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>SM North</td>
-                        <td>
-                            <select class="form-control border border-dark">
-                                <option>0001</option>
-                                <option>0002</option>
-                                <option>0003</option>
-                                <option>0004</option>
-                            </select>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger admin-modify btn-sm">Modify</button>
-                            <button class="admin-edit btn btn-primary btn-sm">Add SKU</button>
-                            <button class="admin-edit btn btn-dark btn-sm">Edit Outlet Name</button>
-                            <button class="admin-edit btn btn-dark btn-sm">Edit SKU</button>
-                            <button class="admin-edit btn btn-danger btn-sm">Remove SKU</button>
-                            <button class="admin-edit btn btn-danger btn-sm">Remove ALL</button>
-                            <button class="admin-edit admin-cancel btn btn-warning btn-sm">Cancel</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Vertis North</td>
-                        <td>
-                            <select class="form-control border border-dark">
-                                <option>0001</option>
-                                <option>0002</option>
-                                <option>0003</option>
-                                <option>0004</option>
-                            </select>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger admin-modify btn-sm">Modify</button>
-                            <button class="admin-edit btn btn-primary btn-sm">Add SKU</button>
-                            <button class="admin-edit btn btn-dark btn-sm">Edit Outlet Name</button>
-                            <button class="admin-edit btn btn-dark btn-sm">Edit SKU</button>
-                            <button class="admin-edit btn btn-danger btn-sm">Remove SKU</button>
-                            <button class="admin-edit btn btn-danger btn-sm">Remove ALL</button>
-                            <button class="admin-edit admin-cancel btn btn-warning btn-sm">Cancel</button>
-                        </td>
-                    </tr>
+                    <%});%>
                     </tbody>
                 </table>
             </div>
-            <!-- <form>
-                <div class="form-group">
-                    <label for="location">Location/Outlet</label>
-                    <select name="location" class="form-control border border-dark" id="location">
-                        <option>Sample</option>
-                        <option>Sample</option>
-                        <option>Sample</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="sku">SKU</label>
-                    <select name="sku" class="form-control border border-dark" id="sku">
-                        <option>00001</option>
-                        <option>00002</option>
-                        <option>00003</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="sku">Add SKU</label>
-                    <input type="number" id="sku" class="form-control border border-primary">
-                </div>
-            </form> -->
         </div>
      </div>
     </div>
 </div>
 
+<script>
+    $.ajax({
+        url: '/admin/products/req',
+        contentType: 'application/json',
+        success: function(response) {
+        var skuList;
+        response.sku.forEach(sk=>{
+            skuList += `<option value="${sk.number}">`;
+        });
+        var skuHTMLDlist = `${skuList}`;
+            $('body').append(`
+                <datalist id="dataList">
+                    ${skuHTMLDlist}
+                </datalist>
+            `);
+        }
+
+    });
+    
+
+
+    //SEARCH FETCH()
+    var adminSearch = $('#admin-search');
+    var adminSearchBox = $('#admin-result-search-box');
+    var searchFocus = $('.search-focus');
+    adminSearch.click(function(){
+        if(adminSearch.val()===''){
+            $('.admin-search-viewbox').css('display','none');
+            $('#admin-result-search-box').html('');
+        }
+            $('.admin-search-viewbox').css('display','block');
+            adminSearch.keyup(function() {
+                var searchValue = adminSearch.val();
+                $.ajax({
+                    url: '/admin/search',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ search: searchValue }),
+                    success: function(response) {
+                        adminSearchBox.html('');
+                        // $('#none-search').css('display', 'block');
+                        response.users.forEach(function(user) {
+                                adminSearchBox.append(
+                                    "<li class='searchUserList'> <img src="+ '/uploads/' + user.photo + " alt='Avatar' class='avatar'> <a href="+'/admin/employee/' + user._id + '>' + user.fullname + "</a></li>"
+                                );
+                        });
+                    }
+                });
+            });
+         });
+    searchFocus.focusout(function(){
+        if(adminSearch.val()===''){
+            $('.admin-search-viewbox').css('display','none');
+            $('#admin-result-search-box').html('');
+        }
+       
+    });
+
+    
+
+</script>
 
 <%-include('./partials/r-footer.ejs')%>

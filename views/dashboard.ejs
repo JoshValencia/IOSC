@@ -4,22 +4,38 @@
     <div class="jumbotron jumbotron-fluid" style="background-color: transparent; margin: 0;">
      <div class="container intro-text">
             <h1 class="font-weight-bold text-center intro-heading">Welcome ! <%=currentUser.firstname%></h1>
+            <p class="lead text-center intro-tagline text-danger">Please Turn On Your GPS For Attendance Purposes Before Clicking the Time In Button</p>
      </div>
      <div id="buttons_area">
         <button class="btn btn-primary btn-lg btn-block" id="timein">Time In</button>
+        <!-- <form id="attendanceForm" action="/employee/<%=currentUser._id%>/timein" method="POST" enctype="multipart/form-data"> -->
+                <input type="file" id="attendancePhoto" class="form-control" name="attendancePhoto" accept="image/*" capture>
+        <!-- </form> -->
         <div id="report">
             <form>
                 <div class="form-group">
-                    <label for="sku">SKU</label>
-                    <select name="sku" class="form-control border border-dark" id="sku">
-                        <option>00001</option>
-                        <option>00002</option>
-                        <option>Sample</option>
+                    <label for="outlet">Outlet</label>
+                    <select name="location" class="form-control border border-dark" id="location">
+                        <option selected>----</option>
+                        <%location.forEach(outlet => { %>
+                            <option><%=outlet.location%></option>
+                        <% }); %>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="amcount">AM Count</label>
-                    <input type="number" id="amcount" class="form-control border border-primary">
+                <div class="form-group" id="sku-div-select" style="display: none;">
+                    <label for="sku">SKU</label>
+                    <select name="sku" class="form-control border border-dark" id="sku">
+                    </select>
+                </div>
+                <div id="counts">
+                    <div class="form-group counts">
+                        <label for="amcount">AM Count</label>
+                        <input type="number" name="am-count" id="amcount" class="form-control border border-primary">
+                    </div>
+                    <div class="form-group counts">
+                        <label for="pmcount">PM Count</label>
+                        <input type="number" name="pm-count" id="pmcount" class="form-control border border-primary">
+                    </div>
                 </div>
             </form>
         </div>
@@ -29,5 +45,30 @@
     </div>
 </div>
 
+<script>
+    $('#location').change(function(){
+        var outletValue = $('#location').val();
+        if(outletValue!="----"){
+            $('.counts').css('display','block');
+            $('#sku-div-select').css('display','block');
+            $.ajax({
+                url: '/employee/dashboard/sku',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ location: outletValue }),
+                success: function(response) {
+                    $('#sku').html('');
+                    response.sku.forEach(function(sk) {
+                        $('#sku').append('<option>' + sk.number + '-' + sk.name + '</option>');
+                    });
+                }
+            });
+        }else{
+            $('#sku-div-select').css('display','none');
+            $('.counts').css('display','none');
+        }
+        
+    });
+</script>
 
 <%-include('./partials/r-footer.ejs')%>

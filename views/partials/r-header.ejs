@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Oswald&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="/scripts/jquery-3.4.1.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light sticky-top scrollColor" style="padding: 20px 0;">
@@ -38,10 +39,19 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" id="nav" href="/login">Log-In</a>
                     </li>
-                <% }else{ %>
                     <li class="nav-item">
-                        <a class="nav-link text-light" id="nav" href="/employee/profile">Profile</a>
+                        <a class="nav-link text-light" id="nav" href="/register">Register</a>
                     </li>
+                <% }else{ %>
+                    <%if(currentUser && currentUser.isAdmin){%>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" id="nav" href="/admin/monitor">Monitor</a>
+                        </li>
+                    <%}%>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" id="nav" href="/employee/profile/<%=currentUser._id%>">Profile</a>
+                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link text-light" id="nav" href="/employee/dashboard">Dashboard</a>
                     </li>

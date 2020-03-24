@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IOSC | Innovative Option Service Cooperative</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Oswald&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+    <style>
+        #mapid { height: 500px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light sticky-top scrollColor" style="padding: 20px 0;">
+        <div class="container">
+        <a class="navbar-brand" style="padding: 0; margin-right: 0;" href="/"><img src="/images/logo/Favicon.png" width="60" height="40"></a>
+            <span class="navbar-text text-white text-justify" style="padding: 0;margin: 0;font-size: 2.5em;height: 1em;line-height: 1em;">IOSC</span>
+
+        <button class="navbar-toggler ml-auto" style="border-color: white;" data-toggle="collapse" data-target="#collapse_target">
+            <i class="fa fa-bars" style="color:white"></i>
+        </button>
+
+        <div class="collapse navbar-collapse text-center justify-content-end" id="collapse_target">
+            <ul class="navbar-nav">
+                <% if (!currentUser) { %>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" id="nav" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" id="nav" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" id="nav" href="#">Our Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" id="nav" href="#">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" id="nav" href="/login">Log-In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" id="nav" href="/register">Register</a>
+                    </li>
+                <% }else{ %>
+                    <%if(currentUser && currentUser.isAdmin){%>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" id="nav" href="/admin/monitor">Monitor</a>
+                        </li>
+                    <%}%>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" id="nav" href="/employee/profile">Profile</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" id="nav" href="/employee/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" id="nav" href="/logout">Log-Out</a>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+
+<div id="mapid"></div>
+    
+
+<script>
+        function geo_error() {
+            alert("PLEASE TURN ON YOUR GPS");
+            }
+
+        var geo_options = {
+            enableHighAccuracy: true, 
+            maximumAge        : 30000, 
+            timeout           : 27000
+        };
+
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                console.log('latitude: ' + position.coords.latitude);
+                console.log('longtitude: '+ position.coords.longitude);
+                var mymap = L.map('mapid').setView([14.6091, 121.0223], 12);
+                <% attendance.forEach(data => { %>
+                   L.marker([
+                    <%=data.lat%>,
+                    <%=data.lon%>
+                ], {
+                    icon: L.icon({
+                        iconUrl: '/uploads/<%=data.employee.image%>',
+                        iconSize: [50, 60],
+                        iconAnchor: [25, 16]
+                    })
+    }).addTo(mymap).bindPopup("<%=data.employee.firstname%> <%=data.employee.middlename[0]%>. <%=data.employee.lastname%>").openPopup();
+                    // // circle.bindPopup("I am a circle.");
+                <% }); %>
+
+                
+
+
+
+                L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                    maxZoom: 18,
+                    id: 'mapbox/streets-v11',
+                    tileSize: 512,
+                    zoomOffset: -1,
+                    accessToken: 'pk.eyJ1Ijoiam9zaHYwNzMxIiwiYSI6ImNrNnJvbzZxbTAydXIzZXNidzRsMnBjdmcifQ.LXVBzDh-XkX9Flo2zKMlRg'
+                }).addTo(mymap);
+                
+              },geo_error,geo_options);
+        } else {
+            console.log('Geolocation not Available')
+        }
+</script>
+
+
+
+
+<footer>
+    
+</footer>
+    
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="/scripts/script.js"></script>
+</body>
+</html>
